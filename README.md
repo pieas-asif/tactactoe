@@ -1,24 +1,13 @@
-# tactactoe
+# tactactoe 🕹
 
-## Project setup
-```
-npm install
-```
+### A Tik Tac Toe game for the Web. 🌍
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+This repository is a PWA 📲 version of [neiloysdir](https://github.com/neiloysdir/)'s GitHub repo [tactoe](https://github.com/neiloysdir/tactoe). 
 
-### Compiles and minifies for production
-```
-npm run build
-```
+![Image](src/assets/logo.JPEG)
 
-### Lints and fixes files
-```
-npm run lint
-```
+To install the APP. Visit to [https://tactactoe.herokuapp.com](https://tactactoe.herokuapp.com) and Install the APP / Add to Home Screen. 
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+It will work on Offline too. ENJOY 🏔
+
+
