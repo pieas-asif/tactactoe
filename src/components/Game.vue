@@ -10,8 +10,8 @@
         data-cell
       ></div>
     </div>
-    <div class="winning-message" id="winningMessage">
-      <div data-winning-message-text></div>
+    <div class="winning-message" :class="winningMessage" id="winningMessage">
+      <div data-winning-message-text>{{ message }}</div>
       <button id="restartButton" @click="restart">Restart</button>
     </div>
   </div>
@@ -24,6 +24,8 @@ export default {
     return {
       X_CLASS: "x",
       O_CLASS: "o",
+      message: "",
+      winningMessage: "",
       WINNING_COMBINATIONS: [
         [0, 1, 2],
         [3, 4, 5],
@@ -44,10 +46,10 @@ export default {
       for (var i = 0; i < this.CHECKED.length; i++) {
         this.CHECKED[i] = "";
       }
+      this.winningMessage = "";
+      this.message = "";
     },
     placeTile: function (i) {
-      console.log("Calling Placetile");
-      console.log(i);
       if (this.CHECKED[i] != "") {
         return;
       } else {
@@ -57,8 +59,47 @@ export default {
           this.o_current ? this.O_CLASS : this.X_CLASS
         );
         this.o_current = !this.o_current;
+
+        this.checkForWin();
       }
     },
+    checkForWin: function () {
+      this.WINNING_COMBINATIONS.forEach((combination) => {
+        var o_count = 0;
+        var x_count = 0;
+
+        combination.forEach((iter) => {
+          if (this.X_CLASS == this.CHECKED[iter]) {
+            x_count++;
+          }
+          if (this.O_CLASS == this.CHECKED[iter]) {
+            o_count++;
+          }
+
+          if (o_count == 3) {
+            this.message = "O Wins";
+            this.winningMessage = "show";
+          } else if (x_count == 3) {
+            this.message = "X Wins";
+            this.winningMessage = "show";
+          } else {
+            var noBlankTile = true;
+            this.CHECKED.forEach((checked) => {
+              if (checked == "") {
+                noBlankTile = false;
+              }
+            });
+            if (noBlankTile) {
+              this.message = "Game Draw";
+              this.winningMessage = "show";
+            }
+          }
+        });
+      });
+    },
+  },
+  mounted: function () {
+    this.restart();
   },
 };
 </script>
